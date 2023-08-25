@@ -21,5 +21,11 @@ public class Role {
         this.name = name;
     }
 
-    // getters and setters
+    public ERole getName(){
+        return this.name;
+    }
+
+    public void setName(ERole name){
+        this.name = name;
+    }
 }

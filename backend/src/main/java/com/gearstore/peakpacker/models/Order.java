@@ -1,7 +1,7 @@
 // user orders
 package com.gearstore.peakpacker.models;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.util.*;
 
 @Entity
@@ -29,7 +29,7 @@ public class Order {
     @Embedded
     private Address shippingAddress;
 
-    @OneToMany(mappedBy = "orders") // one order can have many items
+    @OneToMany(mappedBy = "order") // one order can have many order items
     private List<OrderItem> orderItems;
 
 }

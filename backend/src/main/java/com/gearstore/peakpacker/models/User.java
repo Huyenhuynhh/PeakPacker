@@ -1,18 +1,19 @@
 //user information
 package com.gearstore.peakpacker.models;
 
-import javax.persistence.*;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
+import java.util.HashSet;
+import java.util.Set;
 
-import java.util.*;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name = "users",
     uniqueConstraints = {
         @UniqueConstraint(columnNames = "username"),
-        @UniqueConstraint(columnNames = "emails")
+        @UniqueConstraint(columnNames = "email")
     }) // specifies name of the table that mapped to User
 
 public class User {
@@ -40,15 +41,6 @@ public class User {
         joinColumns = @JoinColumn(name = "user_id"),
         inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
-
-    @Column(nullable = false)
-    private String firstName;
-
-    @Column(nullable = false)
-    private String lastName;
-
-    @OneToMany(mappedBy = "users") // one user can place many orders
-    private List<Order> orders;
 
     public User(){
 

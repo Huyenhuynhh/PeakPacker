@@ -1,7 +1,7 @@
 // a specific product within an order to account the fact that an order may have multiple items
 package com.gearstore.peakpacker.models;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "orderItems")

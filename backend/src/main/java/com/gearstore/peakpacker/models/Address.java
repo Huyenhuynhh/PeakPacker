@@ -1,6 +1,6 @@
 package com.gearstore.peakpacker.models;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Embeddable
 public class Address {

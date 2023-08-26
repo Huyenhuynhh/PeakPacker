@@ -1,6 +1,6 @@
 package com.gearstore.peakpacker.models;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 @Entity
 @Table(name = "roles")
 public class Role {

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 import com.gearstore.peakpacker.models.ERole;
 import com.gearstore.peakpacker.models.Role;
 
+@Repository
 public interface RoleRepository extends JpaRepository<Role, Long> {
     Optional<Role> findByName(ERole name);
 }

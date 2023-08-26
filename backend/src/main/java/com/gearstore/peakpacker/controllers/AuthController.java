@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import jakarta.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,24 +20,18 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.gearstore.peakpacker.exception.TokenRefreshException;
 import com.gearstore.peakpacker.models.ERole;
-import com.gearstore.peakpacker.models.RefreshToken;
 import com.gearstore.peakpacker.models.Role;
 import com.gearstore.peakpacker.models.User;
 import com.gearstore.peakpacker.payload.request.LoginRequest;
 import com.gearstore.peakpacker.payload.request.SignupRequest;
 import com.gearstore.peakpacker.payload.response.JwtResponse;
-import com.gearstore.peakpacker.payload.response.UserInfoResponse;
 import com.gearstore.peakpacker.payload.response.MessageResponse;
 import com.gearstore.peakpacker.repositories.RoleRepository;
 import com.gearstore.peakpacker.repositories.UserRepository;
 import com.gearstore.peakpacker.security.jwt.JwtUtils;
-import com.gearstore.peakpacker.security.services.RefreshTokenService;
 import com.gearstore.peakpacker.security.services.UserDetailsImpl;
 
-//for Angular Client (withCredentials)
-//@CrossOrigin(origins = "http://localhost:8081", maxAge = 3600, allowCredentials="true")
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/api/auth")

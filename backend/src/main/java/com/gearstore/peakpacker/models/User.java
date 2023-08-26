@@ -1,13 +1,11 @@
 //user information
 package com.gearstore.peakpacker.models;
 
-import lombok.Getter;
-import lombok.Setter;
-
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+
 import java.util.*;
 
 @Entity
@@ -16,8 +14,7 @@ import java.util.*;
         @UniqueConstraint(columnNames = "username"),
         @UniqueConstraint(columnNames = "emails")
     }) // specifies name of the table that mapped to User
-@Getter
-@Setter
+
 public class User {
     @Id // designated id is primary key
     @GeneratedValue(strategy = GenerationType.IDENTITY) // tells JPA that id should be generated automatically
@@ -44,6 +41,15 @@ public class User {
         inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
 
+    @Column(nullable = false)
+    private String firstName;
+
+    @Column(nullable = false)
+    private String lastName;
+
+    @OneToMany(mappedBy = "users") // one user can place many orders
+    private List<Order> orders;
+
     public User(){
 
     }
@@ -54,14 +60,45 @@ public class User {
         this.password = password;
     }
 
-    @Column(nullable = false)
-    private String firstName;
+    public Long getId() {
+        return id;
+    }
 
-    @Column(nullable = false)
-    private String lastName;
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-    @OneToMany(mappedBy = "users") // one user can place many orders
-    private List<Order> orders;
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
+    }
 
 }
 

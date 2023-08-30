@@ -16,7 +16,11 @@
       <console name="Connection" type="STANDARD" schema="peakpacker_gear_store" session="Main" />
     </connection>
     <connection id="a0f28d0d-aa23-4d09-8351-62f3438f0a7b">
-      <console name="Connection 1" type="STANDARD" schema="peakpacker_gear_store" session="Main" />
+      <console name="Connection 1" type="STANDARD" schema="peakpacker_gear_store" session="Main"><![CDATA[INSERT INTO roles(name) VALUES('ROLE_USER');
+INSERT INTO roles(name) VALUES('ROLE_MODERATOR');
+INSERT INTO roles(name) VALUES('ROLE_ADMIN');
+
+SELECT * FROM roles;]]></console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseEditorStateManager">
@@ -24,6 +28,9 @@
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
     <open-files />
+  </component>
+  <component name="DBNavigator.Project.ExecutionManager">
+    <retain-sticky-names value="false" />
   </component>
   <component name="DBNavigator.Project.ObjectQuickFilterManager">
     <last-used-operator value="EQUAL" />
@@ -75,7 +82,7 @@
           <session-management value="true" />
           <ddl-file-binding value="true" />
           <database-logging value="true" />
-          <connect-automatically value="true" />
+          <connect-automatically value="false" />
           <restore-workspace value="true" />
           <restore-workspace-deep value="false" />
           <environment-type value="default" />
@@ -161,7 +168,7 @@
           <session-management value="true" />
           <ddl-file-binding value="true" />
           <database-logging value="true" />
-          <connect-automatically value="true" />
+          <connect-automatically value="false" />
           <restore-workspace value="true" />
           <restore-workspace-deep value="false" />
           <environment-type value="default" />
@@ -601,5 +608,8 @@
         </visibility-settings>
       </environment>
     </general-settings>
+  </component>
+  <component name="DBNavigator.Project.StatementExecutionManager">
+    <execution-variables />
   </component>
 </project>

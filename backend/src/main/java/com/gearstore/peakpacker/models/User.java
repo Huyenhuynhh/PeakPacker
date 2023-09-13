@@ -22,12 +22,12 @@ public class User {
     private Long id;
 
     @NotBlank
-    @Size(max = 20)
+    @Size(min = 3, max = 20)
     @Column(unique = true, nullable = false)
     private String username;
 
     @NotBlank
-    @Size(max = 120)
+    @Size(min = 6, max = 120)
     private String password;
 
     @NotBlank

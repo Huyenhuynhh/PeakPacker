@@ -6,9 +6,10 @@ import jakarta.persistence.*;
 public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    @Column(updatable = false, nullable = false)
+    private Long id;
     @Enumerated(EnumType.STRING)
-    @Column(length = 20)
+    @Column(length = 20, unique = true, nullable = false)
     private  ERole name;
 
     public Role(){
@@ -19,9 +20,9 @@ public class Role {
         this.name = name;
     }
 
-    public Integer getId(){ return id ; }
+    public Long getId(){ return id ; }
 
-    public void setId(Integer id) { this.id = id; }
+    public void setId(Long id) { this.id = id; }
 
     public ERole getName(){
         return this.name;

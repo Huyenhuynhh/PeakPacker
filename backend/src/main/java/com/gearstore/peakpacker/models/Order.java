@@ -2,6 +2,8 @@
 package com.gearstore.peakpacker.models;
 
 import jakarta.persistence.*;
+
+import java.math.BigDecimal;
 import java.util.*;
 
 @Entity
@@ -13,23 +15,30 @@ public class Order {
     private Long id;
 
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(nullable = false)
-    private Date datePlaced; // date the order was placed
+    @Column(name = "order_date", nullable = false, updatable = false)
+    private Date orderDate = new Date(); // automatically set current date when order is created
 
-    @ManyToOne
-    @JoinColumn(name = "user_id")
+    @Column(precision = 10, scale = 2)
+    private BigDecimal orderAmount;
+
+    @Enumerated(EnumType.STRING)
+    private OrderStatus orderStatus = OrderStatus.PENDING; // default value as PENDING
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false)
     private User user; // the user who place the order
-
-    @Column(nullable = false)
-    private Double totalAmount;
-
-    @Column(nullable = false)
-    private String status;
 
     @Embedded
     private Address shippingAddress;
 
-    @OneToMany(mappedBy = "order") // one order can have many order items
-    private List<OrderItem> orderItems;
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true) // one order can have many order items
+    private List<OrderItem> orderItems = new ArrayList<>();
+
+    public enum OrderStatus {
+        PENDING,
+        SHIPPED,
+        DELIVERED,
+        CANCELED
+    }
 
 }
